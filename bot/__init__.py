@@ -207,9 +207,7 @@ if len(USER_SESSION_STRING) != 0:
         TELEGRAM_API,
         TELEGRAM_HASH,
         session_string=USER_SESSION_STRING,
-        parse_mode=enums.ParseMode.HTML,
-        max_concurrent_transmissions=10,
-    ).start()
+        parse_mode=enums.ParseMode.HTML, no_updates=True).start()
     IS_PREMIUM_USER = user.me.is_premium
 else:
     IS_PREMIUM_USER = False
@@ -507,9 +505,7 @@ bot = tgClient(
     TELEGRAM_HASH,
     bot_token=BOT_TOKEN,
     workers=1000,
-    parse_mode=enums.ParseMode.HTML,
-    max_concurrent_transmissions=10,
-).start()
+    parse_mode=enums.ParseMode.HTML).start()
 bot_loop = bot.loop
 
 scheduler = AsyncIOScheduler(timezone=str(get_localzone()), event_loop=bot_loop)
